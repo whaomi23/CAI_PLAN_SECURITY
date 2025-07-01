@@ -69,7 +69,7 @@ Puedes utilizar, modificar y distribuir este software bajo los términos de la l
 ## 📬 Contacto
 
 ¿Comentarios o contribuciones?  
-Escríbenos a: **nweijosiaslandamondragon@gmail.com**
+Escríbenos a: **nerijosiaslandamondragon@gmail.com**
 
 ---
 
