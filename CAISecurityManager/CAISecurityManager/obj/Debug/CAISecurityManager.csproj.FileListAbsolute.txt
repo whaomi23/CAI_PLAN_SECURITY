@@ -1,0 +1,7 @@
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\bin\Debug\CAISecurityManager.exe.config
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\bin\Debug\CAISecurityManager.exe
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\bin\Debug\CAISecurityManager.pdb
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\obj\Debug\CAISecurityManager.csproj.AssemblyReference.cache
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\obj\Debug\CAISecurityManager.csproj.CoreCompileInputs.cache
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\obj\Debug\CAISecurityManager.exe
+C:\Users\GMKtec\source\repos\CAISecurityManager\CAISecurityManager\obj\Debug\CAISecurityManager.pdb

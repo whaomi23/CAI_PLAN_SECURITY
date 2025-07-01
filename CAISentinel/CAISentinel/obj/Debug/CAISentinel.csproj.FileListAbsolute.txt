@@ -1,0 +1,7 @@
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\bin\Debug\CAISentinel.exe.config
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\bin\Debug\CAISentinel.exe
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\bin\Debug\CAISentinel.pdb
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\obj\Debug\CAISentinel.csproj.AssemblyReference.cache
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\obj\Debug\CAISentinel.csproj.CoreCompileInputs.cache
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\obj\Debug\CAISentinel.exe
+C:\Users\GMKtec\source\repos\CAISentinel\CAISentinel\obj\Debug\CAISentinel.pdb
