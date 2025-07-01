@@ -45,10 +45,16 @@ Herramienta auxiliar para revertir de forma segura los cambios realizados por **
 
 ## ⚙️ Tecnologías utilizadas
 
-- **Lenguajes**: Bash, Python, PowerShell
-- **Entornos**: Linux y Windows
-- **Bases de datos**: (opcional según implementación: SQLite, PostgreSQL)
-- **Otros**: Notificaciones por correo o logs del sistema (syslog/Event Viewer)
+- **Lenguajes**: C#, Python, PowerShell
+- **Entornos**: Windows
+- **Herramientas de Políticas de Seguridad**:
+  - **GPO (Group Policy Object)**
+  - **gpedit.msc (Editor de directivas de grupo local)**
+  - **Event Viewer (eventvwr.msc)**
+- **Mecanismos de protección**:
+  - Control de permisos NTFS
+  - Restricciones de ejecución por usuario
+  - Logs del sistema y alertas administrativas
 
 ---
 
