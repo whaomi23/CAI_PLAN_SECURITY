@@ -1,0 +1,14 @@
+# CAI Forensic Alert System - Cyberpunk Edition
+# Requirements para el sistema de alertas forenses
+
+# Captura de pantalla y webcam
+opencv-python
+pyautogui
+
+# Dependencias adicionales que pueden ser necesarias
+Pillow
+numpy
+
+# Notas:
+# - tkinter viene incluido con Python
+# - smtplib, email, os, sys, socket, getpass, datetime, platform, winreg, threading, time vienen incluidos con Python 

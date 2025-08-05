@@ -1,0 +1,9 @@
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\bin\Debug\CAI-SENTINEL-GUI.exe.config
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\bin\Debug\CAI-SENTINEL-GUI.exe
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\bin\Debug\CAI-SENTINEL-GUI.pdb
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI-SENTINEL-GUI.csproj.AssemblyReference.cache
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI_SENTINEL_GUI.Properties.Resources.resources
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI-SENTINEL-GUI.csproj.GenerateResource.cache
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI-SENTINEL-GUI.csproj.CoreCompileInputs.cache
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI-SENTINEL-GUI.exe
+C:\Users\GMKtec\source\repos\CAI-SENTINEL-GUI\CAI-SENTINEL-GUI\obj\Debug\CAI-SENTINEL-GUI.pdb

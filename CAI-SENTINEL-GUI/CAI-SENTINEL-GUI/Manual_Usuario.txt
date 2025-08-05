@@ -1,0 +1,323 @@
+
+                    MANUAL DE USUARIO - CAI-SENTINEL
+                    Sistema de Detección de Intrusos
+
+
+1. OBJETIVO
+
+
+CAI-Sentinel es un sistema avanzado de detección de intrusos (IDS) diseñado para 
+proteger información sensible mediante la implementación de archivos señuelo 
+(honeypots). Su objetivo principal es:
+
+• Detectar accesos no autorizados a información sensible
+• Crear alertas automáticas cuando se detecta actividad sospechosa
+• Implementar medidas de seguridad proporcionales al nivel de amenaza
+• Mantener un registro detallado de todos los eventos de seguridad
+• Aislar y proteger el sistema cuando se detecta una intrusión
+
+El sistema funciona como una "trampa" que atrae a atacantes hacia archivos 
+aparentemente valiosos, pero que en realidad están diseñados para detectar y 
+responder a accesos no autorizados.
+
+2. FUNCIONAMIENTO
+
+
+El sistema CAI-Sentinel opera mediante los siguientes mecanismos:
+
+A) CREACIÓN DE ARCHIVOS SEÑUELO
+   - Genera archivos con contenido engañoso que simulan información sensible
+   - Los archivos contienen credenciales falsas, hashes de verificación y 
+     advertencias de seguridad
+   - Se ubican en carpetas estratégicas para atraer la atención de atacantes
+
+B) MONITOREO EN TIEMPO REAL
+   - Utiliza FileSystemWatcher para detectar cambios en archivos señuelo
+   - Monitorea eventos de creación, modificación, eliminación y renombrado
+   - Verifica la integridad de archivos mediante hashes criptográficos
+   - Supervisa eventos de auditoría de Windows (ID 4663)
+
+C) DETECCIÓN DE AMENAZAS
+   - Compara hashes actuales con valores de referencia
+   - Identifica patrones de acceso sospechoso
+   - Detecta intentos de manipulación de archivos
+   - Monitorea apertura y cierre de archivos señuelo
+
+D) RESPUESTA AUTOMÁTICA
+   - Implementa medidas de seguridad escalonadas
+   - Envía alertas por email en tiempo real
+   - Bloquea la estación de trabajo cuando es necesario
+   - Deshabilita adaptadores de red para aislar el sistema
+   - Fuerza el cierre de sesión en casos críticos
+
+3. TABLA DE ACCIONES
+
+
+| EVENTO DETECTADO          | ACCIÓN INMEDIATA           | ACCIÓN SECUNDARIA          |
+|---------------------------|----------------------------|---------------------------|
+| Modificación de archivo   | • Calcular nuevo hash      | • Enviar alerta por email |
+|                           | • Comparar con original    | • Bloquear estación       |
+|                           | • Registrar violación      | • Deshabilitar red        |
+|---------------------------|----------------------------|---------------------------|
+| Eliminación de archivo    | • Activar protocolo rojo   | • Cerrar sesión (3s)      |
+|                           | • Bloquear inmediatamente  | • Apagar equipo (10s)     |
+|                           | • Enviar alerta crítica    | • Recrear archivo         |
+|---------------------------|----------------------------|---------------------------|
+| Renombrado de archivo     | • Registrar intento        | • Bloquear estación       |
+|                           | • Enviar alerta            | • Deshabilitar red        |
+|---------------------------|----------------------------|---------------------------|
+| Apertura de archivo       | • Detectar acceso          | • Deshabilitar red        |
+|                           | • Esperar cierre           | • Cerrar sesión           |
+|---------------------------|----------------------------|---------------------------|
+| Acceso por auditoría      | • Verificar usuario        | • Bloquear estación       |
+| (ID 4663)                | • Filtrar falsos positivos | • Deshabilitar red        |
+|---------------------------|----------------------------|---------------------------|
+| Verificación periódica    | • Comparar hashes          | • Registrar anomalía      |
+| (cada 30 min)            | • Validar integridad       | • Enviar alerta si es    |
+|                           |                            |   necesario               |
+
+4. INSTALACIÓN Y CONFIGURACIÓN
+
+
+PASO 1: PREPARACIÓN DEL SISTEMA
+   • Asegurar que el equipo tenga Windows 10/11
+   • Verificar permisos de administrador (recomendado)
+   • Tener conexión a internet para alertas por email
+
+PASO 2: EJECUCIÓN DE LA APLICACIÓN
+   • Ejecutar CAI-SENTINEL-GUI.exe
+   • La aplicación se minimizará automáticamente a la bandeja del sistema
+   • Hacer doble clic en el ícono de la bandeja para mostrar la ventana principal
+
+PASO 3: INICIO DEL SISTEMA
+   • Hacer clic en "▶ Iniciar Sistema"
+   • El sistema creará automáticamente la estructura de carpetas
+   • Se generarán los archivos señuelo iniciales
+   • El monitoreo comenzará inmediatamente
+
+PASO 4: VERIFICACIÓN DE FUNCIONAMIENTO
+   • El estado cambiará a "🟢 Estado: Activo"
+   • La barra de salud mostrará 100%
+   • Los logs comenzarán a mostrar actividad
+   • Se enviará una alerta de inicio por email
+
+CONFIGURACIÓN AVANZADA:
+   • Modo Administrador: Ejecutar como administrador para máxima protección
+   • Modo Usuario: Funciona con permisos limitados pero efectivo
+   • Configuración SMTP: Editar credenciales en el código fuente si es necesario
+
+5. ESTRUCTURA DE ARCHIVOS
+
+
+C:\CAI\ (Modo Administrador)
+└── Claves de acceso\
+    └── Claves.CAI.txt (Archivo señuelo principal)
+└── Security\
+    ├── SentinelLog.txt (Log principal del sistema)
+    └── IntegrityAudit.log (Log de auditoría de integridad)
+└── Administración\
+└── Proyectos\
+    ├── Públicos\
+    └── Privados\
+└── Base de Datos\
+└── Respaldos\
+└── Documentación Técnica\
+    ├── Manuales\
+    └── Arquitecturas\
+
+%APPDATA%\CAI\ (Modo Usuario)
+└── [Misma estructura que arriba]
+
+ARCHIVOS PRINCIPALES:
+• Claves.CAI.txt: Archivo señuelo con credenciales falsas
+• SentinelLog.txt: Registro de todos los eventos del sistema
+• IntegrityAudit.log: Log específico de violaciones de integridad
+
+6. USUARIOS Y PERMISOS
+
+
+ROLES DEFINIDOS EN EL SISTEMA:
+
+A) CAI_Adm (Coordinadores del CAI)
+   • Permisos: Modify
+   • Acceso: Carpeta Administración
+   • Responsabilidades: Gestión general del sistema
+
+B) CAI_Pub (Acceso público)
+   • Permisos: ReadAndExecute
+   • Acceso: Proyectos/Públicos
+   • Responsabilidades: Consulta de información pública
+
+C) CAI_Priv (Proyectos internos)
+   • Permisos: Modify
+   • Acceso: Proyectos/Privados
+   • Responsabilidades: Gestión de proyectos internos
+
+D) CAI_DB (Responsables técnicos)
+   • Permisos: Modify
+   • Acceso: Base de Datos
+   • Responsabilidades: Administración de bases de datos
+
+E) CAI_Backup (Personal autorizado)
+   • Permisos: Modify
+   • Acceso: Respaldos
+   • Responsabilidades: Gestión de respaldos
+
+F) CAI_Docs (Documentación técnica)
+   • Permisos: ReadAndExecute
+   • Acceso: Documentación Técnica
+   • Responsabilidades: Consulta de documentación
+
+PERMISOS ESPECIALES:
+• Sistema: Control total sobre todas las carpetas
+• Administradores: Control total sobre todas las carpetas
+• Usuario actual: Control total sobre todas las carpetas
+• Usuarios autenticados: Lectura/escritura limitada
+
+7. CONSIDERACIONES DE SEGURIDAD
+
+
+ADVERTENCIAS IMPORTANTES:
+
+A) ARCHIVOS SEÑUELO
+   • Los archivos contienen información falsa diseñada para atraer atacantes
+   • NO contienen información real o sensible
+   • Están diseñados para ser detectados y manipulados
+   • Su eliminación o modificación activará las medidas de seguridad
+
+B) MEDIDAS DE SEGURIDAD
+   • El sistema puede bloquear la estación de trabajo
+   • Puede deshabilitar adaptadores de red
+   • Puede forzar el cierre de sesión
+   • Puede apagar el equipo en casos críticos
+   • Todas las acciones son automáticas y no requieren confirmación
+
+C) ALERTAS POR EMAIL
+   • Se envían alertas automáticas a las direcciones configuradas
+   • Las credenciales SMTP están hardcodeadas en el código
+   • Se recomienda cambiar las credenciales antes del uso en producción
+
+D) LOGS Y AUDITORÍA
+   • Todos los eventos se registran en archivos de log
+   • Los logs pueden crecer significativamente con el tiempo
+   • Se implementa rotación automática de logs
+   • Los logs contienen información sensible de seguridad
+
+8. SOLUCIÓN DE PROBLEMAS
+
+
+PROBLEMA: "Error al iniciar el sistema"
+SOLUCIÓN:
+   • Verificar permisos de administrador
+   • Asegurar que no hay otros procesos usando los archivos
+   • Verificar que las carpetas de destino no estén protegidas
+   • Revisar los logs de Windows para errores específicos
+
+PROBLEMA: "No se envían alertas por email"
+SOLUCIÓN:
+   • Verificar conexión a internet
+   • Comprobar configuración SMTP en el código
+   • Verificar credenciales de email
+   • Revisar firewall y antivirus
+
+PROBLEMA: "Falsos positivos frecuentes"
+SOLUCIÓN:
+   • Ajustar filtros de usuario en el código
+   • Revisar exclusiones de procesos
+   • Verificar configuración de auditoría de Windows
+   • Ajustar intervalos de verificación
+
+PROBLEMA: "El sistema no detecta intrusiones"
+SOLUCIÓN:
+   • Verificar que FileSystemWatcher esté activo
+   • Comprobar permisos en carpetas de monitoreo
+   • Revisar logs del sistema
+   • Verificar que los archivos señuelo existan
+
+PROBLEMA: "Alto uso de CPU"
+SOLUCIÓN:
+   • Ajustar intervalos de verificación periódica
+   • Reducir frecuencia de monitoreo de eventos
+   • Optimizar procesos de limpieza de logs
+   • Revisar configuraciones de threads
+
+9. MANTENIMIENTO
+
+
+TAREAS DIARIAS:
+   • Verificar que el sistema esté activo
+   • Revisar logs de eventos recientes
+   • Comprobar que las alertas se envían correctamente
+
+TAREAS SEMANALES:
+   • Revisar archivos de log para patrones sospechosos
+   • Verificar integridad de archivos señuelo
+   • Comprobar permisos de carpetas
+   • Actualizar credenciales si es necesario
+
+TAREAS MENSUALES:
+   • Rotar archivos de log antiguos
+   • Verificar configuración de auditoría de Windows
+   • Revisar y actualizar exclusiones de procesos
+   • Comprobar conectividad de red
+
+TAREAS TRIMESTRALES:
+   • Revisar y actualizar archivos señuelo
+   • Verificar configuración SMTP
+   • Actualizar permisos de usuarios si es necesario
+   • Revisar políticas de seguridad
+
+LIMPIEZA AUTOMÁTICA:
+   • Los logs se rotan automáticamente cuando superan 10MB
+   • Los logs de integridad se rotan cuando superan 5MB
+   • El sistema mantiene un máximo de archivos de log
+
+10. CONCLUSIONES
+
+
+VENTAJAS DEL SISTEMA CAI-SENTINEL:
+
+A) DETECCIÓN PROACTIVA
+   • Identifica intrusiones antes de que causen daño
+   • Utiliza técnicas de honeypot para atraer atacantes
+   • Proporciona alertas en tiempo real
+
+B) RESPUESTA AUTOMÁTICA
+   • Implementa medidas de seguridad inmediatas
+   • Reduce el tiempo de respuesta a incidentes
+   • Minimiza el impacto de intrusiones
+
+C) REGISTRO COMPLETO
+   • Mantiene logs detallados de todos los eventos
+   • Facilita la investigación forense
+   • Proporciona evidencia para análisis posterior
+
+D) FLEXIBILIDAD
+   • Funciona en modo administrador o usuario
+   • Configurable según necesidades específicas
+   • Escalable para diferentes entornos
+
+E) INTEGRACIÓN
+   • Se integra con sistemas de auditoría de Windows
+   • Compatible con infraestructura existente
+   • No interfiere con operaciones normales
+
+BENEFICIOS ESPERADOS:
+
+• Reducción del tiempo de detección de intrusiones
+• Mejora en la capacidad de respuesta a incidentes
+• Incremento en la visibilidad de amenazas
+• Fortalecimiento de la postura de seguridad general
+• Cumplimiento de requisitos de auditoría y compliance
+
+El sistema CAI-Sentinel representa una capa adicional de seguridad que 
+complementa las medidas tradicionales de protección, proporcionando 
+detección temprana y respuesta automática a amenazas potenciales.
+
+
+                    FIN DEL MANUAL DE USUARIO
+
+
+Fecha de creación: [Fecha actual]
+Versión del sistema: 1.0
+Desarrollado para: CAI (Centro de Análisis de Información) 
